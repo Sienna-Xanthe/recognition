@@ -30,6 +30,19 @@ config :recognition, RecognitionWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :recognition, Recognition.Mailer, adapter: Swoosh.Adapters.Local
 
+config :recognition, RecognitionWeb.Auth.Guardian,
+  issuer: "recognition",
+  secret_key: "wiQY9EPSRmHjNzoM7mNRTRZrMa9CB7oZTS3Gq5L0BCH2LpMDXENJ33lDZ1qOxmSc" 
+
+config :guardian, Guardian.DB,
+   # Add your repository module
+   repo: Recognition.Repo,
+   # default
+   schema_name: "guardian_tokens",
+   # token_types: ["refresh_token"], # store all token types if not set
+   # default: 60 minutes
+   sweep_interval: 60
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
